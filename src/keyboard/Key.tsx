@@ -43,8 +43,8 @@ export const Key = ({
   onClick,
   children,
 }: PropsWithChildren<KeyProps>) => {
-  const pixelWidth = width * oneU - 2;
-  const pixelHeight = height * oneU - 2;
+  const pixelWidth = width * oneU - 3;
+  const pixelHeight = height * oneU - 3;
 
   return (
     <button
@@ -56,7 +56,7 @@ export const Key = ({
       }}
       onClick={onClick}
     >
-      <div className={`absolute text-xs ${selected ? "text-primary-content" : "z1text-base-content"} opacity-80 top-1 text-nowrap left-1/2 font-light -translate-x-1/2 text-center`}>{shortenHeader(header)}</div>
+      <div className={`absolute text-xs ${selected ? "text-primary-content" : "z1text-base-content"} opacity-80 top-1 text-nowrap left-1/2 font-extralight -translate-x-1/2 text-center`}>{shortenHeader(header)}</div>
       {children}
     </button>
   );

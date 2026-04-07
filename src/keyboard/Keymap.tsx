@@ -63,6 +63,7 @@ export const Keymap = ({
       children: (
         <HidUsageLabel
           hid_usage={keymap.layers[selectedLayerIndex].bindings[i].param1}
+          hid_usage2={keymap.layers[selectedLayerIndex].bindings[i].param2}
         />
       ),
     };
