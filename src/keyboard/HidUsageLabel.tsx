@@ -37,7 +37,7 @@ export const HidUsageLabel = ({
 
   // TODO: Do something with implicit mods!
   page &= 0xff;
-  const empty_types = ["None","Studio Unlock" ]
+  const empty_types = ["None","Studio Unlock","Bootloader","Caps Word","Reset" ]
   if ( !empty_types.includes(header || "")) {
   labels1 = hid_usage_get_labels(page, id, keyboardLayout);
   labels2 = hid_usage_get_labels(page2, id2, keyboardLayout);
