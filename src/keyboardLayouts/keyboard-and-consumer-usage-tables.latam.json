@@ -3536,21 +3536,21 @@
         },
         {
           "Id": 54,
-          "Name": "Keyboard Comma and LessThan",
+          "Name": "Keyboard Coma y Punto y Coma",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 55,
-          "Name": "Keyboard Period and GreaterThan",
+          "Name": "Keyboard Punto y Dos Puntos",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 56,
-          "Name": "Keyboard ForwardSlash and QuestionMark",
+          "Name": "Keyboard Guion y SubGuion",
           "Kinds": [
             "Sel"
           ]
