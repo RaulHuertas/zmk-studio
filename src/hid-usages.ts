@@ -1,6 +1,6 @@
 // import { UsagePages } from "./HidUsageTables-1.5.json";
-// Filtered with `cat src/HidUsageTables-1.5.json | jq '{ UsagePages: [.UsagePages[] | select([.Id] |inside([7, 12]))] }' > src/keyboard-and-consumer-usage-tables.json`
-import { UsagePages } from "./keyboard-and-consumer-usage-tables.json";
+// Filtered with `cat src/HidUsageTables-1.5.json | jq '{ UsagePages: [.UsagePages[] | select([.Id] |inside([7, 12]))] }' > src/keyboardLayouts/keyboard-and-consumer-usage-tables.json`
+import { UsagePages } from "./keyboardLayouts/keyboard-and-consumer-usage-tables.json";
 import HidOverridesEN from "./keyboardLayouts/hid-usage-name-overrides.en.json";
 import HidOverridesLATAM from "./keyboardLayouts/hid-usage-name-overrides.latam.json";
 import HidOverridesES from "./keyboardLayouts/hid-usage-name-overrides.es.json";
@@ -13,7 +13,10 @@ interface HidLabels {
 }
 
 const overridesEN: Record<string, Record<string, HidLabels>> = HidOverridesEN;
-const overridesLATAM: Record<string,Record<string, HidLabels>> = HidOverridesLATAM;
+const overridesLATAM: Record<
+  string,
+  Record<string, HidLabels>
+> = HidOverridesLATAM;
 const overridesES: Record<string, Record<string, HidLabels>> = HidOverridesES;
 
 const overridesByLayout: Record<
@@ -24,7 +27,6 @@ const overridesByLayout: Record<
   latam: overridesLATAM,
   es: overridesES,
 };
-
 
 export interface UsageId {
   Id: number;
