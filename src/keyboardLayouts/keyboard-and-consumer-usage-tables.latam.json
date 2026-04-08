@@ -3473,14 +3473,14 @@
         },
         {
           "Id": 45,
-          "Name": "Keyboard Dash and Underscore",
+          "Name": "Keyboard Apostrophe",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 46,
-          "Name": "Keyboard Equals and Plus",
+          "Name": "Keyboard Opening Question Mark",
           "Kinds": [
             "Sel"
           ]

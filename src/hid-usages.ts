@@ -1,6 +1,9 @@
 // import { UsagePages } from "./HidUsageTables-1.5.json";
 // Filtered with `cat src/HidUsageTables-1.5.json | jq '{ UsagePages: [.UsagePages[] | select([.Id] |inside([7, 12]))] }' > src/keyboardLayouts/keyboard-and-consumer-usage-tables.json`
-import { UsagePages } from "./keyboardLayouts/keyboard-and-consumer-usage-tables.json";
+import { UsagePagesEN }     from "./keyboardLayouts/keyboard-and-consumer-usage-tables.en.json";
+import { UsagePagesLATAM }  from "./keyboardLayouts/keyboard-and-consumer-usage-tables.latam.json";
+import { UsagePagesES }     from "./keyboardLayouts/keyboard-and-consumer-usage-tables.es.json";
+
 import HidOverridesEN from "./keyboardLayouts/hid-usage-name-overrides.en.json";
 import HidOverridesLATAM from "./keyboardLayouts/hid-usage-name-overrides.latam.json";
 import HidOverridesES from "./keyboardLayouts/hid-usage-name-overrides.es.json";
@@ -47,7 +50,7 @@ export const hid_usage_page_and_id_from_usage = (
 
 export const hid_usage_page_get_ids = (
   usage_page: number,
-): UsagePageInfo | undefined => UsagePages.find((p) => p.Id === usage_page);
+): UsagePageInfo | undefined => UsagePagesEN.find((p) => p.Id === usage_page);
 
 export const hid_usage_get_label = (
   usage_page: number,
@@ -57,7 +60,7 @@ export const hid_usage_get_label = (
   overridesByLayout[keyboardLayout][usage_page.toString()]?.[
     usage_id.toString()
   ]?.short ||
-  UsagePages.find((p) => p.Id === usage_page)?.UsageIds?.find(
+  UsagePagesEN.find((p) => p.Id === usage_page)?.UsageIds?.find(
     (u) => u.Id === usage_id,
   )?.Name;
 
@@ -69,7 +72,7 @@ export const hid_usage_get_labels = (
   overridesByLayout[keyboardLayout][usage_page.toString()]?.[
     usage_id.toString()
   ] || {
-    short: UsagePages.find((p) => p.Id === usage_page)?.UsageIds?.find(
+    short: UsagePagesEN.find((p) => p.Id === usage_page)?.UsageIds?.find(
       (u) => u.Id === usage_id,
     )?.Name,
   };
