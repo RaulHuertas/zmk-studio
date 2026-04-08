@@ -590,6 +590,7 @@ export default function Keyboard() {
               id,
               name: name || li.toLocaleString(),
             }))}
+            keyboardLayout={keyboardLayout}
             onBindingChanged={doUpdateBinding}
           />
         </div>

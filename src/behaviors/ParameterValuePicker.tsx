@@ -1,10 +1,12 @@
 import { BehaviorParameterValueDescription } from "@zmkfirmware/zmk-studio-ts-client/behaviors";
 import { HidUsagePicker } from "./HidUsagePicker";
+import type { KeyboardLayout } from "../keyboardLayout";
 
 export interface ParameterValuePickerProps {
   value?: number;
   values: BehaviorParameterValueDescription[];
   layers: { id: number; name: string }[];
+  keyboardLayout?: KeyboardLayout;
   onValueChanged: (value?: number) => void;
 }
 
@@ -12,6 +14,7 @@ export const ParameterValuePicker = ({
   value,
   values,
   layers,
+  keyboardLayout = "en",
   onValueChanged,
 }: ParameterValuePickerProps) => {
   if (values.length == 0) {
@@ -50,6 +53,7 @@ export const ParameterValuePicker = ({
           onValueChanged={onValueChanged}
           label={values[0].name}
           value={value}
+          keyboardLayout={keyboardLayout}
           usagePages={[
             { id: 7, min: 4, max: values[0].hidUsage.keyboardMax },
             { id: 12, max: values[0].hidUsage.consumerMax },
