@@ -19,6 +19,7 @@ import {
 } from "../hid-usages";
 import { useCallback, useMemo } from "react";
 import { ChevronDown } from "lucide-react";
+import type { KeyboardLayout } from "../keyboardLayout";
 
 export interface HidUsagePage {
   id: number;
@@ -30,13 +31,17 @@ export interface HidUsagePickerProps {
   label?: string;
   value?: number;
   usagePages: HidUsagePage[];
+  keyboardLayout?: KeyboardLayout;
   onValueChanged: (value?: number) => void;
 }
 
-type UsageSectionProps = HidUsagePage;
+type UsageSectionProps = HidUsagePage & { keyboardLayout: KeyboardLayout };
 
-const UsageSection = ({ id, min, max }: UsageSectionProps) => {
-  const info = useMemo(() => hid_usage_page_get_ids(id), [id]);
+const UsageSection = ({ id, min, max, keyboardLayout }: UsageSectionProps) => {
+  const info = useMemo(
+    () => hid_usage_page_get_ids(id, keyboardLayout),
+    [id, keyboardLayout],
+  );
 
   let usages = useMemo(() => {
     let usages = info?.UsageIds || [];
@@ -44,7 +49,7 @@ const UsageSection = ({ id, min, max }: UsageSectionProps) => {
       usages = usages.filter(
         (i) =>
           (i.Id <= (max || Number.MAX_SAFE_INTEGER) && i.Id >= (min || 0)) ||
-          (id === 7 && i.Id >= 0xe0 && i.Id <= 0xe7)
+          (id === 7 && i.Id >= 0xe0 && i.Id <= 0xe7),
       );
     }
 
@@ -113,6 +118,7 @@ export const HidUsagePicker = ({
   label,
   value,
   usagePages,
+  keyboardLayout = "en",
   onValueChanged,
 }: HidUsagePickerProps) => {
   const mods = useMemo(() => {
@@ -131,7 +137,7 @@ export const HidUsagePicker = ({
 
       onValueChanged(value);
     },
-    [onValueChanged, mods]
+    [onValueChanged, mods],
   );
 
   const modifiersChanged = useCallback(
@@ -144,7 +150,7 @@ export const HidUsagePicker = ({
       let new_value = mask_mods(value) | (mod_flags << 24);
       onValueChanged(new_value);
     },
-    [value]
+    [value],
   );
 
   return (
@@ -167,7 +173,14 @@ export const HidUsagePicker = ({
             className="block max-h-[30vh] min-h-[unset] overflow-auto p-2"
             selectionMode="single"
           >
-            {({ id, min, max }) => <UsageSection id={id} min={min} max={max} />}
+            {({ id, min, max }) => (
+              <UsageSection
+                id={id}
+                min={min}
+                max={max}
+                keyboardLayout={keyboardLayout}
+              />
+            )}
           </ListBox>
         </Popover>
       </ComboBox>
