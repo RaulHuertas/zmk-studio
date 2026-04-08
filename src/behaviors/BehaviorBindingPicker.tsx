@@ -7,11 +7,13 @@ import {
 import { BehaviorBinding } from "@zmkfirmware/zmk-studio-ts-client/keymap";
 import { BehaviorParametersPicker } from "./BehaviorParametersPicker";
 import { validateValue } from "./parameters";
+import type { KeyboardLayout } from "../keyboardLayout";
 
 export interface BehaviorBindingPickerProps {
   binding: BehaviorBinding;
   behaviors: GetBehaviorDetailsResponse[];
   layers: { id: number; name: string }[];
+  keyboardLayout?: KeyboardLayout;
   onBindingChanged: (binding: BehaviorBinding) => void;
 }
 
@@ -19,7 +21,7 @@ function validateBinding(
   metadata: BehaviorBindingParametersSet[],
   layerIds: number[],
   param1?: number,
-  param2?: number
+  param2?: number,
 ): boolean {
   if (
     (param1 === undefined || param1 === 0) &&
@@ -29,7 +31,7 @@ function validateBinding(
   }
 
   let matchingSet = metadata.find((s) =>
-    validateValue(layerIds, param1, s.param1)
+    validateValue(layerIds, param1, s.param1),
   );
 
   if (!matchingSet) {
@@ -43,6 +45,7 @@ export const BehaviorBindingPicker = ({
   binding,
   layers,
   behaviors,
+  keyboardLayout = "en",
   onBindingChanged,
 }: BehaviorBindingPickerProps) => {
   const [behaviorId, setBehaviorId] = useState(binding.behaviorId);
@@ -51,12 +54,12 @@ export const BehaviorBindingPicker = ({
 
   const metadata = useMemo(
     () => behaviors.find((b) => b.id == behaviorId)?.metadata,
-    [behaviorId, behaviors]
+    [behaviorId, behaviors],
   );
 
   const sortedBehaviors = useMemo(
     () => behaviors.sort((a, b) => a.displayName.localeCompare(b.displayName)),
-    [behaviors]
+    [behaviors],
   );
 
   useEffect(() => {
@@ -71,7 +74,7 @@ export const BehaviorBindingPicker = ({
     if (!metadata) {
       console.error(
         "Can't find metadata for the selected behaviorId",
-        behaviorId
+        behaviorId,
       );
       return;
     }
@@ -81,7 +84,7 @@ export const BehaviorBindingPicker = ({
         metadata,
         layers.map(({ id }) => id),
         param1,
-        param2
+        param2,
       )
     ) {
       onBindingChanged({
@@ -124,6 +127,7 @@ export const BehaviorBindingPicker = ({
           param1={param1}
           param2={param2}
           layers={layers}
+          keyboardLayout={keyboardLayout}
           onParam1Changed={setParam1}
           onParam2Changed={setParam2}
         />

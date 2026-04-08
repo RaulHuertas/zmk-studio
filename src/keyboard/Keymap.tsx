@@ -9,6 +9,7 @@ import {
   PhysicalLayout as PhysicalLayoutComp,
 } from "./PhysicalLayout";
 import { HidUsageLabel } from "./HidUsageLabel";
+import type { KeyboardLayout } from "../keyboardLayout";
 
 type BehaviorMap = Record<number, GetBehaviorDetailsResponse>;
 
@@ -16,6 +17,7 @@ export interface KeymapProps {
   layout: PhysicalLayout;
   keymap: KeymapMsg;
   behaviors: BehaviorMap;
+  keyboardLayout: KeyboardLayout;
   scale: LayoutZoom;
   selectedLayerIndex: number;
   selectedKeyPosition: number | undefined;
@@ -26,6 +28,7 @@ export const Keymap = ({
   layout,
   keymap,
   behaviors,
+  keyboardLayout,
   scale,
   selectedLayerIndex,
   selectedKeyPosition,
@@ -64,6 +67,7 @@ export const Keymap = ({
         <HidUsageLabel
           hid_usage={keymap.layers[selectedLayerIndex].bindings[i].param1}
           hid_usage2={keymap.layers[selectedLayerIndex].bindings[i].param2}
+          keyboardLayout={keyboardLayout}
         />
       ),
     };
