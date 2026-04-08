@@ -17,8 +17,8 @@ function remove_prefix(s?: string) {
 export const HidUsageLabel = (
     { hid_usage,hid_usage2,keyboardLayout }: HidUsageLabelProps
 ) => {
-  var labels1 = { short: "a", med: "b", long: "c" };
-  var labels2 = { short: "A", med: "B", long: "C" };
+  var labels1 = { short: "", med: "b", long: "c" };
+  var labels2 = { short: "", med: "", long: "" };
 
   let [page, id] = hid_usage_page_and_id_from_usage(hid_usage,keyboardLayout);
   let [page2, id2] = hid_usage_page_and_id_from_usage(hid_usage2,keyboardLayout);
@@ -27,9 +27,11 @@ export const HidUsageLabel = (
   page &= 0xff;
 
   labels1 = hid_usage_get_labels(page, id,keyboardLayout);
-  labels2 = hid_usage_get_labels(page2, id2,keyboardLayout);
-    console.log("Got labels for usage " + hid_usage + ": " + JSON.stringify(labels1));
-    console.log("Got labels for usage " + hid_usage2 + ": " + JSON.stringify(labels2));
+  if (page == 0 && id >= 0xE0 && id <= 0xE7) {
+    labels2 = hid_usage_get_labels(page2, id2,keyboardLayout);
+  }
+  console.log("Got labels for usage " + hid_usage + ": " + JSON.stringify(labels1));
+  console.log("Got labels for usage " + hid_usage2 + ": " + JSON.stringify(labels2));
 
   return (
     <div className="flex w-full h-full flex-col  items-center justify-center leading-none">

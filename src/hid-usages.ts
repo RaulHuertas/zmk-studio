@@ -67,9 +67,9 @@ export const hid_usage_get_label = (
   usage_id: number,
   keyboardLayout: KeyboardLayout = "en",
 ): string | undefined => {
-  //if (usage_page==0) {
-  //  return usage_id.toString();
-  //}
+  if (usage_page==0) {
+    return usage_id.toString();
+  }
   return overridesByLayout[keyboardLayout][usage_page.toString()]?.[
     usage_id.toString()
   ]?.short ||
@@ -82,6 +82,9 @@ export const hid_usage_get_labels = (
   usage_id: number,
   keyboardLayout: KeyboardLayout = "en",
 ): { short?: string; med?: string; long?: string } => {
+  if (usage_page==0) {
+    return {short: usage_id.toString()};
+  }
   return overridesByLayout[keyboardLayout][usage_page.toString()]?.[
     usage_id.toString()
   ] || {
@@ -90,3 +93,4 @@ export const hid_usage_get_labels = (
       ?.UsageIds?.find((u) => u.Id === usage_id)?.Name,
   };
 }
+
