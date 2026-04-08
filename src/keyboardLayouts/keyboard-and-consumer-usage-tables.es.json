@@ -3473,35 +3473,35 @@
         },
         {
           "Id": 45,
-          "Name": "Keyboard Dash and Underscore",
+          "Name": "Keyboard ' Apostrofe",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 46,
-          "Name": "Keyboard Equals and Plus",
+          "Name": "Keyboard ¡",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 47,
-          "Name": "Keyboard Left Brace",
+          "Name": "Keyboard `",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 48,
-          "Name": "Keyboard Right Brace",
+          "Name": "Keyboard +",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 49,
-          "Name": "Keyboard Backslash and Pipe",
+          "Name": "Keyboard ç",
           "Kinds": [
             "Sel"
           ]
@@ -3515,21 +3515,21 @@
         },
         {
           "Id": 51,
-          "Name": "Keyboard SemiColon and Colon",
+          "Name": "Keyboard Ñ",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 52,
-          "Name": "Keyboard Left Apos and Double",
+          "Name": "´",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 53,
-          "Name": "Keyboard Grave Accent and Tilde",
+          "Name": "Keyboard °",
           "Kinds": [
             "Sel"
           ]
@@ -3858,7 +3858,7 @@
         },
         {
           "Id": 100,
-          "Name": "Keyboard Non-US Backslash and Pipe",
+          "Name": "Keyboard <",
           "Kinds": [
             "Sel"
           ]
