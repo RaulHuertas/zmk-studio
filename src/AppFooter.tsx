@@ -19,7 +19,7 @@ export const AppFooter = ({
           License NOTICE
         </a>
         {" "}-{" "}
-        <a className="hover:text-primary hover:cursor-pointer" onClick={onShowLicenseNotice}>
+        <a className="hover:text-primary hover:cursor-pointer" target="_blank" rel="noopener noreferrer" href="https://www.nutylabs.com">
           Modificado Por Nuty L.A.B.S.
         </a>
       </div>
