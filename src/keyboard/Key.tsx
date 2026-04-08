@@ -56,7 +56,7 @@ export const Key = ({
       }}
       onClick={onClick}
     >
-      <div className={`absolute text-xs ${selected ? "text-primary-content" : "z1text-base-content"} opacity-80 top-1 text-nowrap left-1/2 font-extralight -translate-x-1/2 text-center`}>{shortenHeader(header)}</div>
+      <div className={`absolute text-xs ${selected ? "text-primary-content" : "z1text-base-content"} opacity-90 top-0 text-nowrap left-1/2 font-extralight -translate-x-1/2 text-center`}>{shortenHeader(header)}</div>
       {children}
     </button>
   );
