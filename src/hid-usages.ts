@@ -66,23 +66,27 @@ export const hid_usage_get_label = (
   usage_page: number,
   usage_id: number,
   keyboardLayout: KeyboardLayout = "en",
-): string | undefined =>
-  overridesByLayout[keyboardLayout][usage_page.toString()]?.[
+): string | undefined => {
+  //if (usage_page==0) {
+  //  return usage_id.toString();
+  //}
+  return overridesByLayout[keyboardLayout][usage_page.toString()]?.[
     usage_id.toString()
   ]?.short ||
   getUsagePages(keyboardLayout)
     .find((p) => p.Id === usage_page)
     ?.UsageIds?.find((u) => u.Id === usage_id)?.Name;
-
+}
 export const hid_usage_get_labels = (
   usage_page: number,
   usage_id: number,
   keyboardLayout: KeyboardLayout = "en",
-): { short?: string; med?: string; long?: string } =>
-  overridesByLayout[keyboardLayout][usage_page.toString()]?.[
+): { short?: string; med?: string; long?: string } => {
+  return overridesByLayout[keyboardLayout][usage_page.toString()]?.[
     usage_id.toString()
   ] || {
     short: getUsagePages(keyboardLayout)
       .find((p) => p.Id === usage_page)
       ?.UsageIds?.find((u) => u.Id === usage_id)?.Name,
   };
+}

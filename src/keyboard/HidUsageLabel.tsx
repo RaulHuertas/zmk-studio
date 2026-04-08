@@ -14,38 +14,22 @@ function remove_prefix(s?: string) {
   return s?.replace(/^Keyboard /, "");
 }
 
-function mixStrings(s1?: string, s2?: string) {
-    if (s2 == undefined || s2 == "") {
-        return s1;
-    }
-    if (s1 == undefined || s1 == "") {
-        return s2;
-    }
-    return remove_prefix(s1) + "/" + remove_prefix(s2);
-}
-function mixLabels(labels1, labels2){
-    if (labels2 == undefined) {
-        return labels1;
-    }
-    let short = mixStrings(labels1.short, labels2.short);
-    let med   = mixStrings(labels1.med, labels2.med);
-    let long  = mixStrings(labels1.long, labels2.long);
-    return {short, med, long};
-}
-
-
 export const HidUsageLabel = (
     { hid_usage,hid_usage2,keyboardLayout }: HidUsageLabelProps
 ) => {
+  var labels1 = { short: "a", med: "b", long: "c" };
+  var labels2 = { short: "A", med: "B", long: "C" };
+
   let [page, id] = hid_usage_page_and_id_from_usage(hid_usage,keyboardLayout);
   let [page2, id2] = hid_usage_page_and_id_from_usage(hid_usage2,keyboardLayout);
 
   // TODO: Do something with implicit mods!
   page &= 0xff;
 
-  let labels1 = hid_usage_get_labels(page, id,keyboardLayout);
-  let labels2 = hid_usage_get_labels(page2, id2,keyboardLayout);
-  let labels = mixLabels(labels1, labels2);
+  labels1 = hid_usage_get_labels(page, id,keyboardLayout);
+  labels2 = hid_usage_get_labels(page2, id2,keyboardLayout);
+    console.log("Got labels for usage " + hid_usage + ": " + JSON.stringify(labels1));
+    console.log("Got labels for usage " + hid_usage2 + ": " + JSON.stringify(labels2));
 
   return (
     <div className="flex w-full h-full flex-col  items-center justify-center leading-none">

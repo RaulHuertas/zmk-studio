@@ -51,6 +51,21 @@ export const Keymap = ({
       };
     }
 
+    if (behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.displayName == "To Layer") {
+      console.log("Found a to layer behavior at position " + i);
+      //console.log(behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.metadata)
+      console.log(keymap.layers[selectedLayerIndex].bindings[i].param1)
+    }
+    if (behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.displayName == "Momentary Layer") {
+      console.log("Found a mo layer behavior at position " + i);
+      //console.log(behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.metadata)
+      console.log(keymap.layers[selectedLayerIndex].bindings[i].param1)
+    }
+    if (behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.displayName == "Key Press") {
+      console.log("Found a keypress behavior at position " + i);
+      //console.log(behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.metadata)
+      console.log(keymap.layers[selectedLayerIndex].bindings[i].param1)
+    }
     return {
       id: `${keymap.layers[selectedLayerIndex].id}-${i}`,
       header:
