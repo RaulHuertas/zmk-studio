@@ -40,7 +40,7 @@ const MINIVAN_POSITIONS = [
     x: i,
     y: 0,
     header: "Key Press",
-    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, k)} />],
+    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, k)} hid_usage2={hid_usage_from_page_and_id(7, 0)}/>],
   })),
   {
     x: TOP.length,
@@ -48,7 +48,7 @@ const MINIVAN_POSITIONS = [
     width: 1.75,
     height: 1,
     header: "Key Press",
-    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 42)} />],
+    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 42)} hid_usage2={hid_usage_from_page_and_id(7, 0)} />],
   },
   {
     x: 0,
@@ -64,7 +64,7 @@ const MINIVAN_POSITIONS = [
     width: 1,
     height: 1,
     header: "Key Press",
-    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, k)} />],
+    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, k)} hid_usage2={hid_usage_from_page_and_id(7, 0)} />],
   })),
   {
     x: MIDDLE.length + 1.25,
@@ -72,7 +72,7 @@ const MINIVAN_POSITIONS = [
     width: 1.5,
     height: 1,
     header: "Key Press",
-    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 40)} />],
+    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 40)} hid_usage2={hid_usage_from_page_and_id(7, 0)} />],
   },
   {
     x: 0,
@@ -81,7 +81,7 @@ const MINIVAN_POSITIONS = [
     height: 1,
     header: "Key Press",
     children: [
-      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 225)} />,
+      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 225)} hid_usage2={hid_usage_from_page_and_id(7, 0)} />,
     ],
   },
   ...LOWER.map((k, i) => ({
@@ -90,7 +90,7 @@ const MINIVAN_POSITIONS = [
     width: 1,
     height: 1,
     header: "Key Press",
-    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, k)} />],
+    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, k)} hid_usage2={hid_usage_from_page_and_id(7, k)} />],
   })),
   {
     x: 0,
@@ -99,7 +99,7 @@ const MINIVAN_POSITIONS = [
     height: 1,
     header: "Key Press",
     children: [
-      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 224)} />,
+      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 224)} hid_usage2={hid_usage_from_page_and_id(7, 0)} />,
     ],
   },
   {
@@ -109,7 +109,7 @@ const MINIVAN_POSITIONS = [
     height: 1,
     header: "Key Press",
     children: [
-      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 227)} />,
+      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 227)}  hid_usage2={hid_usage_from_page_and_id(7, 0)}/>,
     ],
   },
   {
@@ -119,7 +119,7 @@ const MINIVAN_POSITIONS = [
     height: 1,
     header: "Key Press",
     children: [
-      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 226)} />,
+      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 226)}  hid_usage2={hid_usage_from_page_and_id(7, 0)}/>,
     ],
   },
   {
@@ -145,7 +145,7 @@ const MINIVAN_POSITIONS = [
     height: 1,
     header: "Key Press",
     children: [
-      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 230)} />,
+      <HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 230)}  hid_usage2={hid_usage_from_page_and_id(7, 0)}/>,
     ],
   },
   {
@@ -154,7 +154,7 @@ const MINIVAN_POSITIONS = [
     width: 1,
     height: 1,
     header: "Key Press",
-    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 80)} />],
+    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 80)}  hid_usage2={hid_usage_from_page_and_id(7, 0)} />],
   },
   {
     x: 10.75,
@@ -162,7 +162,7 @@ const MINIVAN_POSITIONS = [
     width: 1,
     height: 1,
     header: "Key Press",
-    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 81)} />],
+    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 81)}  hid_usage2={hid_usage_from_page_and_id(7, 0)}/>],
   },
   {
     x: 11.75,
@@ -170,7 +170,7 @@ const MINIVAN_POSITIONS = [
     width: 1,
     height: 1,
     header: "Key Press",
-    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 79)} />],
+    children: [<HidUsageLabel hid_usage={hid_usage_from_page_and_id(7, 79)}  hid_usage2={hid_usage_from_page_and_id(7, 0)} />],
   },
 ];
 const POSITIONS = MINIVAN_POSITIONS.map((k, i) => ({ ...k, id: `base-${i}` }));
