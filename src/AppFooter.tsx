@@ -13,10 +13,14 @@ export const AppFooter = ({
         <span>&copy; 2024 - The ZMK Contributors</span> -{" "}
         <a className="hover:text-primary hover:cursor-pointer" onClick={onShowAbout}>
           About ZMK Studio
-        </a>{" "}
-        -{" "}
+        </a>
+        {" "}-{" "}
         <a className="hover:text-primary hover:cursor-pointer" onClick={onShowLicenseNotice}>
           License NOTICE
+        </a>
+        {" "}-{" "}
+        <a className="hover:text-primary hover:cursor-pointer" onClick={onShowLicenseNotice}>
+          Modificado Por Nuty L.A.B.S.
         </a>
       </div>
     </div>

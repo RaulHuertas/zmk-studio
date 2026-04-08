@@ -3473,14 +3473,14 @@
         },
         {
           "Id": 45,
-          "Name": "Keyboard ' Apostrophe",
+          "Name": "Keyboard '",
           "Kinds": [
             "Sel"
           ]
         },
         {
           "Id": 46,
-          "Name": "Keyboard ¿ Interrogación Apertura",
+          "Name": "Keyboard ¿",
           "Kinds": [
             "Sel"
           ]
