@@ -51,26 +51,37 @@ export const Keymap = ({
       };
     }
 
-    if (behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.displayName == "To Layer") {
-      console.log("Found a to layer behavior at position " + i);
+    if (
+      behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]
+        ?.displayName == "To Layer"
+    ) {
+      //console.log("Found a to layer behavior at position " + i);
       //console.log(behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.metadata)
-      console.log(keymap.layers[selectedLayerIndex].bindings[i].param1)
+      //console.log(keymap.layers[selectedLayerIndex].bindings[i].param1);
     }
-    if (behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.displayName == "Momentary Layer") {
-      console.log("Found a mo layer behavior at position " + i);
+    if (
+      behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]
+        ?.displayName == "Momentary Layer"
+    ) {
+      //console.log("Found a mo layer behavior at position " + i);
       //console.log(behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.metadata)
-      console.log(keymap.layers[selectedLayerIndex].bindings[i].param1)
+      //console.log(keymap.layers[selectedLayerIndex].bindings[i].param1);
     }
-    if (behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.displayName == "Key Press") {
-      console.log("Found a keypress behavior at position " + i);
+    if (
+      behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]
+        ?.displayName == "Key Press"
+    ) {
+      //console.log("Found a keypress behavior at position " + i);
       //console.log(behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.metadata)
-      console.log(keymap.layers[selectedLayerIndex].bindings[i].param1)
+      //console.log(keymap.layers[selectedLayerIndex].bindings[i].param1);
     }
+    const header =
+      behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]
+        ?.displayName || "Unknown";
+
     return {
       id: `${keymap.layers[selectedLayerIndex].id}-${i}`,
-      header:
-        behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]
-          ?.displayName || "Unknown",
+      header,
       x: k.x / 100.0,
       y: k.y / 100.0,
       width: k.width / 100,
@@ -83,6 +94,7 @@ export const Keymap = ({
           hid_usage={keymap.layers[selectedLayerIndex].bindings[i].param1}
           hid_usage2={keymap.layers[selectedLayerIndex].bindings[i].param2}
           keyboardLayout={keyboardLayout}
+          header={header}
         />
       ),
     };
