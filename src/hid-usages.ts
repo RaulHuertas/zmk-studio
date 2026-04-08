@@ -4,6 +4,7 @@ import { UsagePages } from "./keyboard-and-consumer-usage-tables.json";
 import HidOverridesEN from "./keyboardLayouts/hid-usage-name-overrides.en.json";
 import HidOverridesLATAM from "./keyboardLayouts/hid-usage-name-overrides.latam.json";
 import HidOverridesES from "./keyboardLayouts/hid-usage-name-overrides.es.json";
+import type { KeyboardLayout } from "./keyboardLayout";
 
 interface HidLabels {
   short?: string;
@@ -12,12 +13,18 @@ interface HidLabels {
 }
 
 const overridesEN: Record<string, Record<string, HidLabels>> = HidOverridesEN;
-const overridesLATAM: Record<string, Record<string, HidLabels>> = HidOverridesLATAM;
+const overridesLATAM: Record<string,Record<string, HidLabels>> = HidOverridesLATAM;
 const overridesES: Record<string, Record<string, HidLabels>> = HidOverridesES;
-let overridesMap = new Map<string, number>();
-overridesMap.set('en', overridesEN);
-overridesMap.set('latam', overridesLATAM);
-overridesMap.set('es', overridesES);
+
+const overridesByLayout: Record<
+  KeyboardLayout,
+  Record<string, Record<string, HidLabels>>
+> = {
+  en: overridesEN,
+  latam: overridesLATAM,
+  es: overridesES,
+};
+
 
 export interface UsageId {
   Id: number;
@@ -43,8 +50,11 @@ export const hid_usage_page_get_ids = (
 export const hid_usage_get_label = (
   usage_page: number,
   usage_id: number,
+  keyboardLayout: KeyboardLayout = "en",
 ): string | undefined =>
-  overridesEN[usage_page.toString()]?.[usage_id.toString()]?.short ||
+  overridesByLayout[keyboardLayout][usage_page.toString()]?.[
+    usage_id.toString()
+  ]?.short ||
   UsagePages.find((p) => p.Id === usage_page)?.UsageIds?.find(
     (u) => u.Id === usage_id,
   )?.Name;
@@ -52,8 +62,11 @@ export const hid_usage_get_label = (
 export const hid_usage_get_labels = (
   usage_page: number,
   usage_id: number,
+  keyboardLayout: KeyboardLayout = "en",
 ): { short?: string; med?: string; long?: string } =>
-  overridesEN[usage_page.toString()]?.[usage_id.toString()] || {
+  overridesByLayout[keyboardLayout][usage_page.toString()]?.[
+    usage_id.toString()
+  ] || {
     short: UsagePages.find((p) => p.Id === usage_page)?.UsageIds?.find(
       (u) => u.Id === usage_id,
     )?.Name,

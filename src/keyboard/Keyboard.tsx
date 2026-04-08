@@ -31,9 +31,9 @@ import { LockStateContext } from "../rpc/LockStateContext";
 import { LockState } from "@zmkfirmware/zmk-studio-ts-client/core";
 import { deserializeLayoutZoom, LayoutZoom } from "./PhysicalLayout";
 import { useLocalStorageState } from "../misc/useLocalStorageState";
+import type { KeyboardLayout } from "../keyboardLayout";
 
 type BehaviorMap = Record<number, GetBehaviorDetailsResponse>;
-type KeyboardLayout = "en" | "latam" | "es";
 
 function useBehaviors(): BehaviorMap {
   let connection = useContext(ConnectionContext);
@@ -545,6 +545,7 @@ export default function Keyboard() {
             keymap={keymap}
             layout={layouts[selectedPhysicalLayoutIndex]}
             behaviors={behaviors}
+            keyboardLayout={keyboardLayout}
             scale={keymapScale}
             selectedLayerIndex={selectedLayerIndex}
             selectedKeyPosition={selectedKeyPosition}
