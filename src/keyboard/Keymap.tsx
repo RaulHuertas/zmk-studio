@@ -51,6 +51,9 @@ export const Keymap = ({
       };
     }
 
+    console.log(      behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]
+        ?.displayName == "To Layer"
+    )
     if (
       behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]
         ?.displayName == "To Layer"
