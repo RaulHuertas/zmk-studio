@@ -16,7 +16,10 @@ interface HidLabels {
 }
 
 const overridesEN: Record<string, Record<string, HidLabels>> = HidOverridesEN;
-const overridesLATAM: Record<string, Record<string, HidLabels>> = HidOverridesLATAM;
+const overridesLATAM: Record<
+  string,
+  Record<string, HidLabels>
+> = HidOverridesLATAM;
 const overridesES: Record<string, Record<string, HidLabels>> = HidOverridesES;
 
 const overridesByLayout: Record<
@@ -45,6 +48,14 @@ export interface UsagePageInfo {
   UsageIds: UsageId[];
 }
 
+const emptyHeaders = new Set([
+  "None",
+  "Studio Unlock",
+  "Bootloader",
+  "Caps Word",
+  "Reset",
+]);
+
 const getUsagePages = (
   keyboardLayout: KeyboardLayout = "en",
 ): UsagePageInfo[] => usagePagesByLayout[keyboardLayout];
@@ -66,31 +77,73 @@ export const hid_usage_get_label = (
   usage_page: number,
   usage_id: number,
   keyboardLayout: KeyboardLayout = "en",
+  header?: string,
 ): string | undefined => {
-  if (usage_page==0) {
+  if (header && emptyHeaders.has(header)) {
+    return undefined;
+  }
+
+  if (usage_page == 0) {
     return usage_id.toString();
   }
-  return overridesByLayout[keyboardLayout][usage_page.toString()]?.[
-    usage_id.toString()
-  ]?.short ||
-  getUsagePages(keyboardLayout)
-    .find((p) => p.Id === usage_page)
-    ?.UsageIds?.find((u) => u.Id === usage_id)?.Name;
-}
+
+  if (header == "Bluetooth"){
+    var usage_name = ""
+    if (usage_page==0){
+        usage_name = "Clear"
+    }
+    return  usage_name 
+  }
+  return (
+    overridesByLayout[keyboardLayout][usage_page.toString()]?.[
+      usage_id.toString()
+    ]?.short ||
+    getUsagePages(keyboardLayout)
+      .find((p) => p.Id === usage_page)
+      ?.UsageIds?.find((u) => u.Id === usage_id)?.Name
+  );
+};
+
 export const hid_usage_get_labels = (
   usage_page: number,
   usage_id: number,
   keyboardLayout: KeyboardLayout = "en",
+  header?: string,
 ): { short?: string; med?: string; long?: string } => {
-  if (usage_page==0) {
-    return {short: usage_id.toString()};
+  if (header && emptyHeaders.has(header)) {
+    return {};
   }
-  return overridesByLayout[keyboardLayout][usage_page.toString()]?.[
-    usage_id.toString()
-  ] || {
-    short: getUsagePages(keyboardLayout)
-      .find((p) => p.Id === usage_page)
-      ?.UsageIds?.find((u) => u.Id === usage_id)?.Name,
-  };
-}
 
+
+  if (header == "Bluetooth"){
+  console.log(header+usage_page.toString()+usage_id.toString())
+    var usage_name = ""
+    if (usage_id==0){
+        usage_name = "Clr"
+    }else if (usage_id==1){
+        usage_name = "Next"
+    }else if (usage_id==2){
+        usage_name = "Prev"
+    }else if (usage_id==3){
+        usage_name = "Select"
+    }else if (usage_id==4){
+        usage_name = "ClrAll"
+    }else if (usage_id==5){
+        usage_name = "Disconnect"
+    }
+    return { short: usage_name };
+  }
+  
+  if (usage_page == 0) {
+    return { short: usage_id.toString() };
+  }
+  return (
+    overridesByLayout[keyboardLayout][usage_page.toString()]?.[
+      usage_id.toString()
+    ] || {
+      short: getUsagePages(keyboardLayout)
+        .find((p) => p.Id === usage_page)
+        ?.UsageIds?.find((u) => u.Id === usage_id)?.Name,
+    }
+  );
+};

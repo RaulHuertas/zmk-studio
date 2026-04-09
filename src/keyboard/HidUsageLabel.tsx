@@ -37,26 +37,34 @@ export const HidUsageLabel = ({
 
   // TODO: Do something with implicit mods!
   page &= 0xff;
-  const empty_types = ["None","Studio Unlock","Bootloader","Caps Word","Reset" ]
-  const no_second_param_types = ["Momentary Layer","Toggle Layer","To Layer" , "Key Press"]
-  const no_second_param_pages = [7,12 ]
-  if ( !empty_types.includes(header || "")) {
-      labels1 = hid_usage_get_labels(page, id, keyboardLayout);
-      if ( !no_second_param_types.includes(header || "")) {
-        labels2 = hid_usage_get_labels(page2, id2, keyboardLayout);
+  const no_second_param_headers = [
+    "Momentary Layer",
+    "Toggle Layer",
+    "To Layer",
+    "Key Press",
+    "Bluetooth",
+  ];
+  labels1 = hid_usage_get_labels(page, id, keyboardLayout, header);
+  //console.log("header " + header);
+  if (header=="Bluetooth"){
+      const bluetooth_commands_no_second_params = [0,1,2,4,5]
+      if(bluetooth_commands_no_second_params.includes(id)){
+        labels2 = {short:""}
+      }else{
+        //labels2 = {short:id.toString()}
+        labels2 = {short:hid_usage2.toString()}
       }
+      console.log(
+        "Got labels for usage " + hid_usage + ": " + JSON.stringify(labels1),
+      );
+      console.log(
+        "Got labels2 for usage " + hid_usage2 + ": " + JSON.stringify(labels2),
+      );
+      console.log(hid_usage2)
   }
-
-  console.log(
-    "header " + header
-  );
-  console.log(
-    "Got labels for usage " + hid_usage + ": " + JSON.stringify(labels1)
-  );
-  console.log(
-    "Got labels2 for usage " + hid_usage2 + ": " + JSON.stringify(labels2)
-  );
-
+  if (!no_second_param_headers.includes(header || "")) {
+    labels2 = hid_usage_get_labels(page2, id2, keyboardLayout, header);
+  }
   return (
     <div className="flex w-full h-full flex-col  items-center justify-center leading-none">
       <span

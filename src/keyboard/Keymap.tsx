@@ -51,9 +51,9 @@ export const Keymap = ({
       };
     }
 
-    console.log(      behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.displayName    )
-    console.log(      keymap.layers[selectedLayerIndex].bindings[i].param1    )
-    console.log(      keymap.layers[selectedLayerIndex].bindings[i].param2    )
+    //console.log(      behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]?.displayName    )
+    //console.log(      keymap.layers[selectedLayerIndex].bindings[i].param1    )
+    //console.log(      keymap.layers[selectedLayerIndex].bindings[i].param2    )
     const header =
       behaviors[keymap.layers[selectedLayerIndex].bindings[i].behaviorId]
         ?.displayName || "Unknown";
