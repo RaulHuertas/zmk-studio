@@ -45,7 +45,6 @@ export const HidUsageLabel = ({
     "Bluetooth",
   ];
   labels1 = hid_usage_get_labels(page, id, keyboardLayout, header);
-  //console.log("header " + header);
   if (header=="Bluetooth"){
       const bluetooth_commands_no_second_params = [0,1,2,4,5]
       if(bluetooth_commands_no_second_params.includes(id)){
@@ -54,13 +53,6 @@ export const HidUsageLabel = ({
         //labels2 = {short:id.toString()}
         labels2 = {short:hid_usage2.toString()}
       }
-      console.log(
-        "Got labels for usage " + hid_usage + ": " + JSON.stringify(labels1),
-      );
-      console.log(
-        "Got labels2 for usage " + hid_usage2 + ": " + JSON.stringify(labels2),
-      );
-      console.log(hid_usage2)
   }
   if (!no_second_param_headers.includes(header || "")) {
     labels2 = hid_usage_get_labels(page2, id2, keyboardLayout, header);
